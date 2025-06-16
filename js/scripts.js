@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 currentLightboxOverlay = null;
                 document.removeEventListener('keydown', handleLightboxKeydown);
-            }, 300); // Match CSS transition duration
+            }, 250); // Match CSS transition-speed (0.25s)
         }
     }
 

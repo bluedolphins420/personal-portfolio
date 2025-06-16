@@ -1,30 +1,51 @@
 /* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto+Mono:wght@400;700&family=Roboto+Slab:wght@400;700&display=swap');
 
-/* CSS Variables */
+/* CSS Variables - Carpenter Meets Tech Theme */
 :root {
-    --primary-color: #0A2463; /* Deep Blue */
-    --secondary-color: #3E92CC; /* Vibrant Accent */
-    --accent-hover-color: #2a7cb5; /* Darker accent for hover */
-    --neutral-light: #F8F9FA; /* Light Gray for backgrounds */
-    --neutral-medium: #E9ECEF; /* Slightly darker gray for borders/dividers */
-    --neutral-dark: #343A40; /* Darker Gray for text */
-    --text-color: #212529; /* Standard text color */
-    --text-light: #FFFFFF;
-    --body-font: 'Open Sans', sans-serif;
-    --heading-font: 'Montserrat', sans-serif; /* Using Montserrat for headings */
-    --base-font-size: 17px; /* Increased base font size */
-    --line-height-base: 1.6;
-    --spacing-unit: 1rem; /* Base unit for margins/paddings */
-    --border-radius: 0.25rem; /* Standard border radius */
-    --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    --transition-speed: 0.3s;
+    /* Color Palette */
+    --color-wood-dark: #5C3D2E;         /* Dark Wood - For accents, footers */
+    --color-wood-medium: #A0522D;       /* Medium Wood - For cards, backgrounds */
+    --color-wood-light: #C4A484;        /* Light Wood - For highlights or alternate backgrounds */
+    --color-home-depot-orange: #F96302; /* Accent Orange - For CTAs, progress */
+    --color-apple-gray-light: #F5F5F7;  /* Light Gray - Main background */
+    --color-apple-gray-medium: #D1D1D6; /* Medium Gray - Borders, dividers */
+    --color-apple-gray-dark: #1D1D1F;   /* Dark Gray - Primary text */
+    --color-tech-blue: #007AFF;         /* Tech Blue - Accent, links, focus */
+    --color-blueprint-bg: #E0E8F0;      /* Light blue-gray for blueprint paper */
+    --color-white: #FFFFFF;
+    --color-black: #000000;
+
+    /* Typography */
+    --font-body: 'Inter', sans-serif;
+    --font-heading: 'Roboto Slab', serif;
+    --font-monospace: 'Roboto Mono', monospace;
+
+    /* UI Elements */
+    --base-font-size: 17px;
+    --line-height-base: 1.7;
+    --spacing-unit: 1rem;
+    --border-radius-sharp: 0.15rem; /* For techy elements */
+    --border-radius-rounded: 0.3rem; /* For more organic elements */
+    --box-shadow-subtle: 0 2px 8px rgba(0, 0, 0, 0.07);
+    --box-shadow-strong: 0 4px 15px rgba(0, 0, 0, 0.15);
+    --transition-speed: 0.25s;
+
+    /* Texture Placeholder - Use actual images if available */
+    --texture-wood-light: linear-gradient(135deg, var(--color-wood-light) 0%, var(--color-wood-medium) 100%);
+    --texture-wood-dark: linear-gradient(to bottom, var(--color-wood-medium), var(--color-wood-dark));
+    --texture-blueprint: repeating-linear-gradient(
+        45deg,
+        rgba(0, 122, 255, 0.05),
+        rgba(0, 122, 255, 0.05) 1px,
+        transparent 1px,
+        transparent 10px
+    );
+    --texture-blueprint-section-bg: var(--color-blueprint-bg) var(--texture-blueprint);
 }
 
 /* Global Styles */
-*,
-*::before,
-*::after {
+*, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -36,682 +57,440 @@ html {
 }
 
 body {
-    font-family: var(--body-font);
+    font-family: var(--font-body);
     line-height: var(--line-height-base);
-    color: var(--text-color);
-    background-color: var(--neutral-light);
+    color: var(--color-apple-gray-dark);
+    background-color: var(--color-apple-gray-light);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    padding-top: 70px; /* Placeholder for fixed header height */
 }
 
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
-    font-family: var(--heading-font);
-    color: var(--primary-color);
-    margin-top: 0;
+    font-family: var(--font-heading);
+    color: var(--color-wood-dark);
     margin-bottom: calc(var(--spacing-unit) * 0.75);
     line-height: 1.3;
 }
+h1 { font-size: 2.8rem; }
+h2 { font-size: 2.2rem; }
+h3 { font-size: 1.6rem; }
 
-h1 { font-size: 2.5rem; }
-h2 { font-size: 2rem; }
-h3 { font-size: 1.5rem; }
-h4 { font-size: 1.25rem; }
-
-p {
-    margin-bottom: var(--spacing-unit);
-}
+p { margin-bottom: var(--spacing-unit); }
 
 a {
-    color: var(--secondary-color);
+    color: var(--color-tech-blue);
     text-decoration: none;
     transition: color var(--transition-speed) ease;
 }
-
 a:hover {
-    color: var(--accent-hover-color);
+    color: var(--color-home-depot-orange);
     text-decoration: underline;
 }
 
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
+img { max-width: 100%; height: auto; display: block; }
 
-/* Header and Navigation */
+/* Header & Navigation */
 header {
-    background-color: var(--text-light);
-    color: var(--primary-color);
-    padding: var(--spacing-unit) 0;
-    position: fixed; /* Sticky header */
-    top: 0;
-    left: 0;
-    width: 100%;
+    background: var(--texture-wood-dark);
+    color: var(--color-apple-gray-light);
+    padding: calc(var(--spacing-unit) * 0.8) 0;
+    position: fixed;
+    top: 0; left: 0; width: 100%;
     z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    transition: background-color var(--transition-speed) ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
-
-header.scrolled {
-    background-color: rgba(255, 255, 255, 0.95);
+header.scrolled { /* Example, JS can add this class */
+    background: rgba(92, 61, 46, 0.95); /* Darker, slightly transparent wood-dark */
     backdrop-filter: blur(5px);
 }
 
 nav {
     display: flex;
-    justify-content: space-between; /* Align logo/brand and menu */
+    justify-content: space-between;
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 calc(var(--spacing-unit) * 2);
 }
 
-.nav-logo a { /* Assuming you might add a logo */
-    font-family: var(--heading-font);
-    font-size: 1.5rem;
+.nav-logo a { /* If a logo is added */
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
     font-weight: 700;
-    color: var(--primary-color);
+    color: var(--color-white);
     text-decoration: none;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    align-items: center;
-}
-
-nav ul li {
-    margin-left: calc(var(--spacing-unit) * 1.5);
 }
 
 nav ul li a {
-    font-family: var(--heading-font);
-    color: var(--primary-color);
-    text-decoration: none;
+    font-family: var(--font-body); /* Changed to Inter for nav links */
     font-weight: 600;
-    padding: 0.5rem 0.75rem;
-    border-radius: var(--border-radius);
+    color: var(--color-apple-gray-light);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius-sharp);
     transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
 }
-
-nav ul li a:hover,
-nav ul li a.active { /* For active page link */
-    background-color: var(--secondary-color);
-    color: var(--text-light);
+nav ul li a:hover, nav ul li a.active {
+    background-color: var(--color-home-depot-orange);
+    color: var(--color-white);
     text-decoration: none;
 }
 
-/* Mobile Menu Toggle */
+/* Mobile Menu Toggle - Ruler Style */
 .menu-toggle {
-    display: none; /* Hidden by default, shown in media query */
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: calc(var(--spacing-unit) * 0.75); /* Increased padding */
-    z-index: 1010; /* Above nav items */
+    background: none; border: none; cursor: pointer;
+    padding: calc(var(--spacing-unit) * 0.75);
+    z-index: 1010;
+    display: none; /* Shown in media query */
 }
-
 .menu-toggle .bar {
     display: block;
-    width: 25px;
-    height: 3px;
-    background-color: var(--primary-color);
-    margin: 5px 0;
+    width: 28px; height: 3px;
+    background-color: var(--color-apple-gray-light);
+    margin: 5px auto;
     transition: all var(--transition-speed) ease-in-out;
-    border-radius: 3px;
+    border-radius: 1px; /* Sharper edges */
 }
-
-.menu-toggle.active .bar:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
-}
-.menu-toggle.active .bar:nth-child(2) {
-    opacity: 0;
-}
-.menu-toggle.active .bar:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
-}
-
+.menu-toggle .bar:nth-child(2) { width: 22px; } /* Middle bar shorter like ruler mark */
+.menu-toggle.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.menu-toggle.active .bar:nth-child(2) { opacity: 0; transform: translateX(-10px); } /* Slide out */
+.menu-toggle.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); width: 28px; } /* Full width for X */
 
 /* General Section Styling */
 section {
-    padding: calc(var(--spacing-unit) * 4) calc(var(--spacing-unit) * 2); /* More whitespace */
-    text-align: center;
-    max-width: 1200px;
+    padding: calc(var(--spacing-unit) * 3) calc(var(--spacing-unit) * 2);
+    max-width: 1100px; /* Slightly reduced max-width */
     margin: 0 auto;
-    opacity: 0; /* For scroll animations */
-    transform: translateY(30px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    text-align: center;
 }
-
-section:first-of-type { /* Hero section often needs more top padding due to fixed header */
-    padding-top: calc(var(--spacing-unit) * 6);
-}
-
-section.animate {
-    opacity: 1;
-    transform: translateY(0);
-}
-
+section:first-of-type { padding-top: calc(var(--spacing-unit) * 4); }
 section h2 {
-    margin-bottom: calc(var(--spacing-unit) * 2.5); /* More space below section titles */
-    position: relative;
-    display: inline-block;
+    margin-bottom: calc(var(--spacing-unit) * 2);
+    position: relative; display: inline-block;
 }
-
-/* Underline effect for section titles */
-section h2::after {
-    content: '';
-    display: block;
-    width: 60px; /* Width of the underline */
-    height: 4px; /* Thickness of the underline */
-    background-color: var(--secondary-color);
-    margin: 0.5rem auto 0; /* Centered below the title */
+section h2::after { /* Underline effect for section titles */
+    content: ''; display: block;
+    width: 70px; height: 5px;
+    background-color: var(--color-home-depot-orange);
+    margin: 0.6rem auto 0;
     border-radius: 2px;
 }
 
-
-/* Hero Section */
+/* Hero Section - Blueprint Theme */
 #hero {
-    background-color: var(--primary-color); /* Using primary color as background */
-    color: var(--text-light);
-    padding: calc(var(--spacing-unit) * 6) calc(var(--spacing-unit) * 2);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 80vh; /* Make hero take more viewport height */
-    text-align: center;
+    background: var(--texture-blueprint-section-bg);
+    color: var(--color-apple-gray-dark);
+    padding: calc(var(--spacing-unit) * 4) calc(var(--spacing-unit) * 2);
+    min-height: 70vh;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
 }
-
 #hero h1 {
-    color: var(--text-light);
-    font-size: 3rem; /* Larger font for hero title */
-    margin-bottom: var(--spacing-unit);
+    color: var(--color-apple-gray-dark); /* Dark text on light blueprint */
+    font-size: 3rem;
+    font-weight: 700;
+    text-shadow: 1px 1px 2px var(--color-apple-gray-medium); /* Subtle shadow for depth */
 }
-
 #hero p {
-    font-size: 1.25rem;
-    margin-bottom: calc(var(--spacing-unit) * 1.5);
-    max-width: 600px; /* Constrain width of hero text */
-    line-height: 1.7;
+    font-size: 1.2rem;
+    max-width: 650px;
+    color: var(--color-apple-gray-dark);
+    opacity: 0.9;
 }
 
-/* Call-to-Action Button */
+/* Button - Home Depot Orange Theme */
 .btn {
     display: inline-block;
-    padding: calc(var(--spacing-unit) * 0.75) calc(var(--spacing-unit) * 2);
-    margin-top: var(--spacing-unit);
-    font-family: var(--heading-font);
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--text-light);
-    background-color: var(--secondary-color);
-    border: 2px solid var(--secondary-color);
-    border-radius: var(--border-radius);
+    padding: calc(var(--spacing-unit) * 0.8) calc(var(--spacing-unit) * 2.2);
+    margin-top: var(--spacing-unit) * 1.5;
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--color-white);
+    background-color: var(--color-home-depot-orange);
+    border: 2px solid var(--color-home-depot-orange);
+    border-radius: var(--border-radius-sharp);
     text-decoration: none;
-    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, transform var(--transition-speed) ease;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: var(--box-shadow-subtle);
+    transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
 }
-
 .btn:hover {
-    background-color: var(--accent-hover-color);
-    border-color: var(--accent-hover-color);
-    color: var(--text-light);
+    background-color: #e05200; /* Darker orange */
+    border-color: #e05200;
+    color: var(--color-white);
     text-decoration: none;
-    transform: translateY(-2px);
-}
-
-.btn-outline {
-    background-color: transparent;
-    color: var(--secondary-color);
-    border: 2px solid var(--secondary-color);
-}
-
-.btn-outline:hover {
-    background-color: var(--secondary-color);
-    color: var(--text-light);
+    transform: translateY(-3px);
+    box-shadow: var(--box-shadow-strong);
 }
 
 /* About Me Section */
-#about {
-    text-align: left; /* Align text to left for readability */
+#about { text-align: center; }
+#about figure {
+    margin: 0 auto calc(var(--spacing-unit) * 1.5); /* Center figure */
+    width: 220px; height: 220px;
 }
-#about .container { /* Add a container for better layout control */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: calc(var(--spacing-unit) * 2);
+#about img {
+    border-radius: 50%; /* Keep it circular */
+    border: 8px solid var(--color-wood-dark);
+    box-shadow: 0 0 0 4px var(--color-wood-medium), var(--box-shadow-strong); /* Double border effect */
+    width: 100%; height: 100%; object-fit: cover;
 }
-
-#about img, #about figure {
-    width: 200px; /* Maintain image size */
-    height: 200px;
-    border-radius: 50%; /* Circular image */
-    object-fit: cover; /* Ensure image covers the area well */
-    box-shadow: var(--box-shadow);
-    margin-bottom: var(--spacing-unit);
-}
-
-#about p {
-    max-width: 700px; /* Constrain text width */
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center; /* Center the paragraph text below the image */
-}
+#about p { max-width: 750px; margin-left: auto; margin-right: auto; }
 
 /* Portfolio Section */
+#portfolio { background-color: var(--color-apple-gray-medium); /* Workshop wall */ }
 .projects {
     display: grid;
-    grid-template-columns: 1fr; /* Mobile: 1 column */
-    gap: calc(var(--spacing-unit) * 2);
+    grid-template-columns: 1fr; /* Mobile default */
+    gap: calc(var(--spacing-unit) * 2.5);
 }
-
 .project {
-    background-color: var(--text-light);
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-    overflow: hidden; /* To contain image border radius */
-    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
-    display: flex;
-    flex-direction: column;
-}
-
-.project:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-}
-
-.project figure {
-    margin: 0;
-}
-
-.project img {
-    width: 100%;
-    height: 250px; /* Fixed height for project images */
-    object-fit: cover;
-    border-bottom: 1px solid var(--neutral-medium);
-}
-
-.project h3 {
-    font-size: 1.25rem;
-    color: var(--primary-color);
-    margin-top: var(--spacing-unit);
-}
-
-.project p {
-    font-size: 0.95rem;
-    padding: 0 var(--spacing-unit) var(--spacing-unit);
-    flex-grow: 1; /* Allows p to take available space */
-    color: var(--neutral-dark);
-}
-
-.project-content {
-    padding: var(--spacing-unit);
-    text-align: left;
-}
-
-
-/* Testimonials Section */
-#testimonials {
-    background-color: var(--neutral-medium); /* Slightly different background */
-}
-
-.testimonial {
-    background-color: var(--text-light);
-    padding: calc(var(--spacing-unit) * 1.5);
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-    margin-bottom: var(--spacing-unit);
-    text-align: left;
-    border-left: 5px solid var(--secondary-color); /* Accent border */
-}
-
-.testimonial p {
-    font-style: italic;
-    color: var(--neutral-dark);
-    margin-bottom: 0.5rem; /* Reduce space for quote */
-}
-
-.testimonial p:last-child { /* Client name */
-    font-style: normal;
-    font-weight: 600;
-    text-align: right;
-    color: var(--primary-color);
-}
-
-
-/* Skills Section */
-.skill {
-    margin-bottom: calc(var(--spacing-unit) * 1.5);
-    text-align: left;
-}
-
-.skill h3 {
-    font-size: 1.1rem;
-    margin-bottom: calc(var(--spacing-unit) * 0.5);
-    color: var(--primary-color);
-}
-
-.progress-bar {
-    background-color: var(--neutral-medium);
-    border-radius: var(--border-radius);
+    background: var(--color-wood-medium); /* Wood plank card */
+    border-radius: var(--border-radius-rounded);
+    box-shadow: var(--box-shadow-strong);
     overflow: hidden;
-    height: 25px; /* Slightly taller progress bar */
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    display: flex; flex-direction: column;
+}
+.project:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+.project figure { margin: 0; }
+.project img {
+    width: 100%; height: 220px; /* Slightly shorter */
+    object-fit: cover;
+    border-bottom: 4px solid var(--color-wood-dark); /* Darker wood edge */
+}
+.project-content-wrap { /* Blueprint/paper on wood */
+    background-color: var(--color-blueprint-bg);
+    padding: var(--spacing-unit) * 1.2;
+    margin: var(--spacing-unit); /* Inset paper effect */
+    border-radius: var(--border-radius-sharp);
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+    flex-grow: 1; display: flex; flex-direction: column;
+}
+.project-content-wrap h3 {
+    color: var(--color-apple-gray-dark);
+    font-size: 1.3rem; margin-bottom: calc(var(--spacing-unit) * 0.5);
+}
+.project-content-wrap p {
+    color: var(--color-apple-gray-dark);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    flex-grow: 1;
 }
 
-.progress {
-    background-color: var(--secondary-color);
-    height: 100%;
-    border-radius: var(--border-radius) 0 0 var(--border-radius); /* Keep left radius */
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding-right: 0.5rem; /* Space for percentage text if added via JS */
-    color: var(--text-light);
-    font-size: 0.8rem;
-    font-weight: 600;
-    transition: width var(--transition-speed) ease-in-out; /* Animate width change */
-}
-
-
-/* Contact Form */
-#contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-unit);
-    max-width: 600px;
-    margin: 0 auto; /* Center form */
+/* Skills Section - Ruler Theme */
+#skills { background-color: var(--color-apple-gray-light); } /* Clean background */
+.skill {
+    margin-bottom: calc(var(--spacing-unit) * 1.8);
+    background: var(--color-white); /* Clean card for each skill */
+    padding: var(--spacing-unit);
+    border-radius: var(--border-radius-rounded);
+    box-shadow: var(--box-shadow-subtle);
     text-align: left;
 }
+.skill h3 {
+    font-size: 1.2rem;
+    color: var(--color-apple-gray-dark); /* Techy text for skill name */
+    margin-bottom: calc(var(--spacing-unit) * 0.8);
+    font-family: var(--font-monospace); /* Monospace for tech skill names */
+}
+.progress-bar { /* Styled as a wooden ruler */
+    background: var(--texture-wood-light);
+    border-radius: var(--border-radius-sharp);
+    height: 30px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+    padding: 4px; /* To show border and contain progress */
+    /* Ruler markings (complex, optional) */
+}
+.progress { /* The 'measurement' */
+    background-color: var(--color-home-depot-orange);
+    height: 100%;
+    border-radius: 2px; /* Tiny radius for the fill */
+    display: flex; align-items: center; justify-content: flex-end;
+    color: var(--color-white);
+    font-size: 0.8rem; font-weight: 600;
+    padding-right: 0.5rem;
+    transition: width var(--transition-speed) ease-in-out;
+    box-shadow: 0 0 5px rgba(249, 99, 2, 0.5); /* Glow for orange part */
+}
 
+/* Testimonials Section - Corkboard & Notes */
+#testimonials { background: linear-gradient(45deg, #D2B48C, #B8860B); /* Corkboard gradient */ }
+.testimonial {
+    background: var(--color-apple-gray-light); /* Note paper */
+    padding: calc(var(--spacing-unit) * 1.5);
+    border-radius: var(--border-radius-sharp);
+    box-shadow: var(--box-shadow-strong);
+    margin-bottom: var(--spacing-unit) * 1.5;
+    text-align: left;
+    border: 1px solid var(--color-apple-gray-medium);
+    position: relative; /* For pseudo-elements like 'pin' */
+}
+.testimonial::before { /* 'Tack' or 'Pin' */
+    content: ''; position: absolute;
+    top: 10px; left: 10px;
+    width: 12px; height: 12px;
+    background: var(--color-apple-gray-dark); /* Pin head */
+    border-radius: 50%;
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+.testimonial p:first-of-type { /* The quote */
+    font-family: var(--font-body);
+    font-style: italic;
+    color: var(--color-apple-gray-dark);
+    margin-bottom: var(--spacing-unit);
+    padding-left: 20px; /* Space for pin */
+}
+.testimonial p:last-child { /* Client name */
+    font-family: var(--font-heading);
+    font-style: normal; font-weight: 600;
+    text-align: right;
+    color: var(--color-wood-dark);
+}
+
+/* Contact Form - Clean Tech */
+#contact { background-color: var(--color-apple-gray-light); }
+#contact-form {
+    max-width: 650px; margin: 0 auto;
+    background: var(--color-white);
+    padding: calc(var(--spacing-unit) * 2);
+    border-radius: var(--border-radius-rounded);
+    box-shadow: var(--box-shadow-strong);
+    text-align: left;
+}
 #contact-form label {
     font-weight: 600;
-    margin-bottom: calc(var(--spacing-unit) * 0.25);
-    color: var(--primary-color);
+    margin-bottom: calc(var(--spacing-unit) * 0.3);
+    color: var(--color-apple-gray-dark);
+    display: block; /* Ensure labels take full width */
 }
-
 #contact-form input[type="text"],
 #contact-form input[type="email"],
 #contact-form textarea {
     width: 100%;
-    padding: calc(var(--spacing-unit) * 0.75);
-    border: 1px solid var(--neutral-medium);
-    border-radius: var(--border-radius);
-    font-family: var(--body-font);
+    padding: calc(var(--spacing-unit) * 0.8);
+    border: 1px solid var(--color-apple-gray-medium);
+    border-radius: var(--border-radius-sharp);
+    font-family: var(--font-body);
     font-size: 1rem;
-    transition: border-color var(--transition-speed) ease;
+    margin-bottom: var(--spacing-unit); /* Space below each input */
+    background-color: var(--color-apple-gray-light); /* Subtle input background */
+    transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
 }
-
 #contact-form input[type="text"]:focus,
 #contact-form input[type="email"]:focus,
 #contact-form textarea:focus {
     outline: none;
-    border-color: var(--secondary-color);
-    box-shadow: 0 0 0 2px rgba(var(--secondary-color-rgb, 62, 146, 204), 0.25); /* Define --secondary-color-rgb if not already */
+    border-color: var(--color-tech-blue);
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2); /* Tech blue focus glow */
+    background-color: var(--color-white);
 }
-/* Helper for box-shadow (define --secondary-color-rgb at the top if you use this) */
-/* :root { --secondary-color-rgb: 62, 146, 204; } */
-
-
-#contact-form textarea {
-    min-height: 150px;
-    resize: vertical;
+#contact-form textarea { min-height: 160px; resize: vertical; }
+#contact-form button[type="submit"] { /* Uses .btn styles defined earlier */
+    margin-top: 0; /* Remove default top margin if it's on .btn */
 }
 
-#contact-form button[type="submit"] {
-    /* Replicating .btn styles */
-    display: inline-block;
-    padding: calc(var(--spacing-unit) * 0.75) calc(var(--spacing-unit) * 2);
-    margin-top: var(--spacing-unit);
-    font-family: var(--heading-font);
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--text-light);
-    background-color: var(--secondary-color);
-    border: 2px solid var(--secondary-color);
-    border-radius: var(--border-radius);
-    text-decoration: none;
-    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, transform var(--transition-speed) ease;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    cursor: pointer; /* Explicitly set cursor for button */
-    align-self: flex-start; /* Original alignment */
-}
-
-#contact-form button[type="submit"]:hover {
-    background-color: var(--accent-hover-color);
-    border-color: var(--accent-hover-color);
-    color: var(--text-light);
-    text-decoration: none;
-    transform: translateY(-2px);
-}
 
 /* Footer */
 footer {
-    background-color: var(--neutral-dark);
-    color: var(--neutral-light);
+    background: var(--color-wood-dark);
+    color: var(--color-apple-gray-light);
     text-align: center;
-    padding: calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 2);
-    margin-top: calc(var(--spacing-unit) * 3); /* Space above footer */
+    padding: calc(var(--spacing-unit) * 2.5) calc(var(--spacing-unit) * 2);
+    margin-top: calc(var(--spacing-unit) * 3);
 }
+footer p { margin-bottom: 0; font-size: 0.9rem; opacity: 0.8; }
 
-footer p {
-    margin-bottom: 0;
-    font-size: 0.9rem;
-}
-
-/* Lightbox Styles */
+/* Lightbox - Keep it clean and effective */
 .lightbox-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.85); /* Darker overlay */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 2000; /* Ensure it's on top */
-    padding: var(--spacing-unit);
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity var(--transition-speed) ease, visibility var(--transition-speed) ease;
+    background: rgba(29, 29, 31, 0.9); /* Dark tech overlay */
+    backdrop-filter: blur(8px); /* Frosted glass */
 }
-
-.lightbox-overlay.active { /* Class to show lightbox */
-    opacity: 1;
-    visibility: visible;
-}
-
 .lightbox-overlay img {
-    max-width: 90%;
-    max-height: 90%;
-    border: 3px solid var(--text-light);
-    border-radius: var(--border-radius);
-    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    border: 2px solid var(--color-apple-gray-light);
+    border-radius: var(--border-radius-rounded);
+    box-shadow: 0 0 40px rgba(0,0,0,0.5);
 }
 
-/* Mobile-First Responsive Design */
-
-/* Styles for Mobile Navigation Menu (when active) */
+/* Responsive Adjustments */
+/* Mobile Navigation Specifics (from previous step, ensure integration) */
 @media (max-width: 767px) {
+    body { padding-top: 60px; /* Adjust if header height changes */ }
+    header { padding: calc(var(--spacing-unit) * 0.6) 0; }
+    .menu-toggle { display: flex; flex-direction: column; justify-content: center; align-items: center; }
     nav ul#navigation-menu {
-        /* Initially hidden, shown by JS adding .active class */
-        /* Overrides desktop 'display: flex' for mobile dropdown behavior */
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        position: absolute;
-        top: 100%; /* Position below the header */
-        left: 0;
-        background-color: var(--text-light);
+        display: none; flex-direction: column; width: 100%;
+        position: absolute; top: 100%; left: 0;
+        background-color: var(--color-wood-dark); /* Match header */
         box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.4s ease-in-out, padding-bottom 0.4s ease-in-out; /* Smooth transition */
-        padding-bottom: 0; /* For transition */
+        max-height: 0; overflow: hidden;
+        transition: max-height 0.35s ease-in-out, padding-bottom 0.35s ease-in-out;
+        padding-bottom: 0;
     }
-
     nav ul#navigation-menu.active {
-        display: flex; /* Make it visible */
-        max-height: 50vh; /* Adjust as needed, enough to show items */
-        overflow-y: auto; /* Scroll if too many items */
-        padding-bottom: var(--spacing-unit); /* Add some padding at the bottom when open */
+        display: flex; max-height: 55vh; overflow-y: auto;
+        padding-bottom: var(--spacing-unit);
     }
-
-    nav ul#navigation-menu li {
-        margin: 0;
-        width: 100%;
-    }
-
+    nav ul#navigation-menu li { margin: 0; width: 100%; }
     nav ul#navigation-menu li a {
-        display: block;
-        padding: var(--spacing-unit) calc(var(--spacing-unit) * 2);
-        text-align: center;
-        border-bottom: 1px solid var(--neutral-medium);
-        color: var(--primary-color); /* Ensure text color is readable */
-        font-weight: 600;
+        display: block; padding: var(--spacing-unit) calc(var(--spacing-unit) * 2);
+        text-align: center; border-bottom: 1px solid rgba(245, 245, 247, 0.1); /* Subtle divider */
+        color: var(--color-apple-gray-light);
     }
-
-    nav ul#navigation-menu li:last-child a {
-        border-bottom: none;
-    }
-
+    nav ul#navigation-menu li:last-child a { border-bottom: none; }
     nav ul#navigation-menu li a:hover,
     nav ul#navigation-menu li a.active {
-        background-color: var(--secondary-color);
-        color: var(--text-light);
+        background-color: var(--color-home-depot-orange);
+        color: var(--color-white);
     }
 
-    /* Show mobile menu toggle button */
-    .menu-toggle {
-        display: flex; /* Show the hamburger icon */
-        flex-direction: column; /* Ensure bars stack vertically */
-        justify-content: center;
-        align-items: center;
-    }
+    h1 { font-size: 2.2rem; } #hero h1 { font-size: 2.5rem; }
+    h2 { font-size: 1.8rem; } h3 { font-size: 1.4rem; }
+    #hero p { font-size: 1.1rem; }
+    .btn { padding: calc(var(--spacing-unit) * 0.7) calc(var(--spacing-unit) * 1.8); font-size: 1rem; }
 }
-
 
 /* Tablet Styles */
 @media (min-width: 768px) {
-    html {
-        font-size: calc(var(--base-font-size) + 1px); /* Slightly larger base on tablets */
-    }
-
-    h1 { font-size: 3rem; }
-    #hero h1 { font-size: 3.5rem; }
-    #hero p { font-size: 1.35rem; }
-
-    .menu-toggle {
-        display: none; /* Hide toggle on larger screens */
-    }
-
-    nav ul {
-        display: flex !important; /* Override inline style from JS if any */
-        flex-direction: row;
-        background-color: transparent;
-        width: auto;
-        position: static;
-    }
-
-    nav ul li {
-        margin: 0;
-        margin-left: calc(var(--spacing-unit) * 1.5); /* Keep original spacing */
-    }
-
-    #about .container {
-        flex-direction: row; /* Side-by-side layout */
-        align-items: flex-start;
-        text-align: left;
-    }
-
-    #about img, #about figure {
-        margin-right: calc(var(--spacing-unit) * 3); /* Space between image and text */
-        margin-bottom: 0;
-    }
-    #about p {
-        text-align: left; /* Align paragraph to left */
-        margin-left: 0;
-    }
-
-    .projects {
-        grid-template-columns: repeat(2, 1fr); /* 2 columns for tablets */
-    }
-
-    #contact-form button[type="submit"] {
-        align-self: center; /* Center button on larger screens if form is centered */
-    }
+    html { font-size: calc(var(--base-font-size) + 0.5px); }
+    .projects { grid-template-columns: repeat(2, 1fr); }
+    #contact-form { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-unit); }
+    #contact-form div:nth-child(3), #contact-form button[type="submit"] { grid-column: 1 / -1; }
+    #contact-form button[type="submit"] { justify-self: center; } /* Center button on tablet+ */
 }
 
 /* Desktop Styles */
 @media (min-width: 1024px) {
-    html {
-        font-size: calc(var(--base-font-size) + 2px); /* Even larger base on desktops */
-    }
-    h1 { font-size: 3.5rem; }
-    #hero h1 { font-size: 4rem; }
-
-    .projects {
-        grid-template-columns: repeat(3, 1fr); /* 3 columns for desktops */
-    }
-
-    /* Increase padding for sections on larger screens for more whitespace */
-    section {
-        padding: calc(var(--spacing-unit) * 5) calc(var(--spacing-unit) * 3);
-    }
-     section:first-of-type {
-        padding-top: calc(var(--spacing-unit) * 7);
-    }
-
-    #hero {
-         padding: calc(var(--spacing-unit) * 8) calc(var(--spacing-unit) * 2);
-    }
+    html { font-size: calc(var(--base-font-size) + 1px); }
+    .projects { grid-template-columns: repeat(3, 1fr); gap: calc(var(--spacing-unit) * 2); }
+    section { padding: calc(var(--spacing-unit) * 4) calc(var(--spacing-unit) * 2.5); }
+    section:first-of-type { padding-top: calc(var(--spacing-unit) * 5); }
+    #hero { padding: calc(var(--spacing-unit) * 5) calc(var(--spacing-unit) * 2); }
 }
 
-/* Accessibility: Focus Visible (for keyboard navigation) */
+/* Accessibility: Focus Visible */
 :focus-visible {
-  outline: 3px solid var(--secondary-color);
-  outline-offset: 2px;
-  border-radius: var(--border-radius);
+  outline: 3px solid var(--color-tech-blue);
+  outline-offset: 3px;
+  border-radius: var(--border-radius-sharp);
 }
-
-nav ul li a:focus-visible {
-    background-color: var(--neutral-medium);
-    color: var(--primary-color);
-    outline: none; /* Custom focus for nav items */
-}
-
-.btn:focus-visible {
-    outline-color: var(--primary-color); /* Different outline for buttons if needed */
-}
-
-/* Adjustments for fixed header */
-body {
-    padding-top: 80px; /* Approximate height of the header, adjust as needed */
-}
-
-/* Styles for when JavaScript is disabled (optional but good practice) */
-.no-js nav ul { /* Ensure nav is visible if JS is off and mobile menu relies on it */
-    /* Add styles here if nav is hidden by default for JS enhancements */
-}
-
-/* Add this at the beginning of your CSS file for the :root variables */
-/* :root { --secondary-color-rgb: 62, 146, 204; }  <-- This is if you use the rgba shadow for form focus */
-/* Make sure to replace 62, 146, 204 with the actual RGB values of your --secondary-color if you use that specific shadow */
-
-/* Example for --secondary-color-rgb based on #3E92CC */
-/* R: 62, G: 146, B: 204 */
-:root {
-    --secondary-color-rgb: 62, 146, 204;
-    /* ... other variables ... */
-}
-
-#contact-form input[type="text"]:focus,
-#contact-form input[type="email"]:focus,
-#contact-form textarea:focus {
+nav ul li a:focus-visible, .btn:focus-visible {
+    box-shadow: 0 0 0 3px var(--color-tech-blue), inset 0 0 0 2px var(--color-white); /* Example */
     outline: none;
-    border-color: var(--secondary-color);
-    box-shadow: 0 0 0 0.2rem rgba(var(--secondary-color-rgb), 0.25);
 }
+#contact-form input:focus-visible, #contact-form textarea:focus-visible {
+    outline: none; /* Already handled by border and box-shadow */
+}
+
+/* Helper for body padding for fixed header, adjust if header height changes significantly */
+body {
+    padding-top: 70px; /* Based on new header padding, this may need adjustment */
+}
+/* Example: Measure header height in devtools and set this value.
+   If header padding: calc(var(--spacing-unit) * 0.8) 0; and spacing unit is 1rem (17px),
+   0.8 * 17 = 13.6px padding top/bottom. Add font size, etc.
+   Let's assume final header height is around 60-70px.
+*/
