@@ -10,12 +10,12 @@
 <body>
     <header>
         <nav>
-            <div class="menu-toggle" id="mobile-menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-            <ul class="nav no-search">
+            <button class="menu-toggle" id="mobile-menu" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navigation-menu">
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+            </button>
+            <ul class="nav no-search" id="navigation-menu">
                 <li><a href="#hero">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#portfolio">Portfolio</a></li>
@@ -24,92 +24,109 @@
         </nav>
     </header>
 
-    <section id="hero">
-        <h1>Welcome to My Portfolio</h1>
-        <p>I'm a web developer passionate about creating interactive and responsive web applications.</p>
-        <a href="#portfolio" class="btn">View My Work</a>
-    </section>
+    <main>
+        <section id="hero" aria-labelledby="hero-heading">
+            <h1 id="hero-heading">Welcome to My Portfolio</h1>
+            <p>I'm a web developer passionate about creating interactive and responsive web applications.</p>
+            <a href="#portfolio" class="btn">View My Work</a>
+        </section>
 
-    <section id="about">
-        <h2>About Me</h2>
-        <p>Hi! I'm Deandre Donahue, a novice web developer with a growing background in HTML, CSS, and JavaScript. I enjoy turning complex problems into simple, beautiful, and intuitive designs.</p>
-        <img src="images/about-photo.jpg" alt="About Me Photo" style="width:200px;height:auto;">
-    </section>
+        <section id="about" aria-labelledby="about-heading">
+            <h2 id="about-heading">About Me</h2>
+            <p>Hi! I'm Deandre Donahue, a novice web developer with a growing background in HTML, CSS, and JavaScript. I enjoy turning complex problems into simple, beautiful, and intuitive designs.</p>
+            <figure>
+                <img src="images/about-photo.jpg" alt="Deandre Donahue, a novice web developer." style="width:200px;height:auto;">
+                <figcaption style="display: none;">Deandre Donahue</figcaption>
+            </figure>
+        </section>
 
-    <section id="portfolio">
-        <h2>My Work</h2>
-        <div class="projects">
-            <div class="project">
-                <h3>Project 1: Personal Blog</h3>
-                <a href="images/project1.jpg" class="lightbox">
-                    <img src="images/project1.jpg" alt="Project 1" style="width:100%;height:auto;">
-                </a>
-                <p>A responsive personal blog built with HTML, CSS, and JavaScript.</p>
+        <section id="portfolio" aria-labelledby="portfolio-heading">
+            <h2 id="portfolio-heading">My Work</h2>
+            <div class="projects">
+                <article class="project" aria-labelledby="project1-heading">
+                    <h3 id="project1-heading">Project 1: Personal Blog</h3>
+                    <figure>
+                        <a href="images/project1.jpg" class="lightbox">
+                            <img src="images/project1.jpg" alt="Screenshot of Project 1: Personal Blog" style="width:100%;height:auto;">
+                        </a>
+                        <figcaption style="display: none;">Screenshot of Project 1: Personal Blog</figcaption>
+                    </figure>
+                    <p>A responsive personal blog built with HTML, CSS, and JavaScript.</p>
+                </article>
+                <article class="project" aria-labelledby="project2-heading">
+                    <h3 id="project2-heading">Project 2: E-commerce Site</h3>
+                    <figure>
+                        <a href="images/project2.jpg" class="lightbox">
+                            <img src="images/project2.jpg" alt="Screenshot of Project 2: E-commerce Site" style="width:100%;height:auto;">
+                        </a>
+                        <figcaption style="display: none;">Screenshot of Project 2: E-commerce Site</figcaption>
+                    </figure>
+                    <p>An e-commerce site with user authentication and a shopping cart built using React and Node.js.</p>
+                </article>
+                <article class="project" aria-labelledby="project3-heading">
+                    <h3 id="project3-heading">Project 3: Portfolio Website</h3>
+                    <figure>
+                        <a href="images/project3.jpg" class="lightbox">
+                            <img src="images/project3.jpg" alt="Screenshot of Project 3: Portfolio Website" style="width:100%;height:auto;">
+                        </a>
+                        <figcaption style="display: none;">Screenshot of Project 3: Portfolio Website</figcaption>
+                    </figure>
+                    <p>My own portfolio website showcasing my projects and skills.</p>
+                </article>
             </div>
-            <div class="project">
-                <h3>Project 2: E-commerce Site</h3>
-                <a href="images/project2.jpg" class="lightbox">
-                    <img src="images/project2.jpg" alt="Project 2" style="width:100%;height:auto;">
-                </a>
-                <p>An e-commerce site with user authentication and a shopping cart built using React and Node.js.</p>
-            </div>
-            <div class="project">
-                <h3>Project 3: Portfolio Website</h3>
-                <a href="images/project3.jpg" class="lightbox">
-                    <img src="images/project3.jpg" alt="Project 3" style="width:100%;height:auto;">
-                </a>
-                <p>My own portfolio website showcasing my projects and skills.</p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="testimonials">
-        <h2>Testimonials</h2>
-        <div class="testimonial">
-            <p>"Deandre Donahue did an amazing job on our website. Highly recommended!" - Client A</p>
-        </div>
-        <div class="testimonial">
-            <p>"Professional and great to work with. The website looks fantastic." - Client B</p>
-        </div>
-    </section>
+        <aside id="testimonials" aria-labelledby="testimonials-heading">
+            <h2 id="testimonials-heading">Testimonials</h2>
+            <article class="testimonial">
+                <p>"Deandre Donahue did an amazing job on our website. Highly recommended!" - Client A</p>
+            </article>
+            <article class="testimonial">
+                <p>"Professional and great to work with. The website looks fantastic." - Client B</p>
+            </article>
+        </aside>
 
-    <section id="skills">
-        <h2>My Skills</h2>
-        <div class="skill">
-            <h3>HTML</h3>
-            <div class="progress-bar">
-                <div class="progress" style="width: 50%;"></div>
-            </div>
-        </div>
-        <div class="skill">
-            <h3>CSS</h3>
-            <div class="progress-bar">
-                <div class="progress" style="width: 45%;"></div>
-            </div>
-        </div>
-        <div class="skill">
-            <h3>JavaScript</h3>
-            <div class="progress-bar">
-                <div class="progress" style="width: 35%;"></div>
-            </div>
-        </div>
-    </section>
+        <section id="skills" aria-labelledby="skills-heading">
+            <h2 id="skills-heading">My Skills</h2>
+            <article class="skill" aria-labelledby="html-skill">
+                <h3 id="html-skill">HTML</h3>
+                <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" aria-labelledby="html-skill">
+                    <div class="progress" style="width: 50%;"></div>
+                </div>
+            </article>
+            <article class="skill" aria-labelledby="css-skill">
+                <h3 id="css-skill">CSS</h3>
+                <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" aria-labelledby="css-skill">
+                    <div class="progress" style="width: 45%;"></div>
+                </div>
+            </article>
+            <article class="skill" aria-labelledby="js-skill">
+                <h3 id="js-skill">JavaScript</h3>
+                <div class="progress-bar" role="progressbar" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100" aria-labelledby="js-skill">
+                    <div class="progress" style="width: 35%;"></div>
+                </div>
+            </article>
+        </section>
 
-    <section id="contact">
-        <h2>Contact Me</h2>
+        <section id="contact" aria-labelledby="contact-heading">
+            <h2 id="contact-heading">Contact Me</h2>
         <form id="contact-form">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" required></textarea>
-
+            <div>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required autocomplete="name">
+            </div>
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required autocomplete="email">
+            </div>
+            <div>
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" required></textarea>
+            </div>
             <button type="submit">Send</button>
         </form>
     </section>
+    </main>
 
     <footer>
         <p>&copy; 2024 Deandre Donahue. All rights reserved.</p>

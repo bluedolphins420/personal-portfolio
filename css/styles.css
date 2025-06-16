@@ -1,188 +1,504 @@
-/* Base styles for the entire document */
-body {
-    font-family: Arial, sans-serif;
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap');
+
+/* CSS Variables */
+:root {
+    --primary-color: #0A2463; /* Deep Blue */
+    --secondary-color: #3E92CC; /* Vibrant Accent */
+    --accent-hover-color: #2a7cb5; /* Darker accent for hover */
+    --neutral-light: #F8F9FA; /* Light Gray for backgrounds */
+    --neutral-medium: #E9ECEF; /* Slightly darker gray for borders/dividers */
+    --neutral-dark: #343A40; /* Darker Gray for text */
+    --text-color: #212529; /* Standard text color */
+    --text-light: #FFFFFF;
+    --body-font: 'Open Sans', sans-serif;
+    --heading-font: 'Montserrat', sans-serif; /* Using Montserrat for headings */
+    --base-font-size: 17px; /* Increased base font size */
+    --line-height-base: 1.6;
+    --spacing-unit: 1rem; /* Base unit for margins/paddings */
+    --border-radius: 0.25rem; /* Standard border radius */
+    --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --transition-speed: 0.3s;
+}
+
+/* Global Styles */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
-/* Header styles */
+html {
+    scroll-behavior: smooth;
+    font-size: var(--base-font-size);
+}
+
+body {
+    font-family: var(--body-font);
+    line-height: var(--line-height-base);
+    color: var(--text-color);
+    background-color: var(--neutral-light);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--heading-font);
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: calc(var(--spacing-unit) * 0.75);
+    line-height: 1.3;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.25rem; }
+
+p {
+    margin-bottom: var(--spacing-unit);
+}
+
+a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    transition: color var(--transition-speed) ease;
+}
+
+a:hover {
+    color: var(--accent-hover-color);
+    text-decoration: underline;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Header and Navigation */
 header {
-    background-color: #333;
-    color: white;
-    padding: 1rem 0;
+    background-color: var(--text-light);
+    color: var(--primary-color);
+    padding: var(--spacing-unit) 0;
+    position: fixed; /* Sticky header */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: background-color var(--transition-speed) ease;
 }
 
-/* Navigation styles */
-nav ul {
-    list-style: none;
+header.scrolled {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(5px);
+}
+
+nav {
     display: flex;
-    justify-content: center;
-    padding: 0;
+    justify-content: space-between; /* Align logo/brand and menu */
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 calc(var(--spacing-unit) * 2);
 }
 
-nav ul li {
-    margin: 0 1rem;
-}
-
-nav ul li a {
-    color: white;
+.nav-logo a { /* Assuming you might add a logo */
+    font-family: var(--heading-font);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
     text-decoration: none;
 }
 
-/* Responsive Navigation */
+nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+nav ul li {
+    margin-left: calc(var(--spacing-unit) * 1.5);
+}
+
+nav ul li a {
+    font-family: var(--heading-font);
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--border-radius);
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+
+nav ul li a:hover,
+nav ul li a.active { /* For active page link */
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+    text-decoration: none;
+}
+
+/* Mobile Menu Toggle */
 .menu-toggle {
-    display: none;
-    flex-direction: column;
+    display: none; /* Hidden by default, shown in media query */
+    background: none;
+    border: none;
     cursor: pointer;
+    padding: calc(var(--spacing-unit) * 0.75); /* Increased padding */
+    z-index: 1010; /* Above nav items */
 }
 
 .menu-toggle .bar {
+    display: block;
     width: 25px;
     height: 3px;
-    background-color: #fff;
-    margin: 4px 0;
-    transition: 0.4s;
+    background-color: var(--primary-color);
+    margin: 5px 0;
+    transition: all var(--transition-speed) ease-in-out;
+    border-radius: 3px;
 }
 
-@media (max-width: 768px) {
-    .nav {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background-color: #333;
-    }
-
-    .nav.active {
-        display: flex;
-    }
-
-    .menu-toggle {
-        display: flex;
-    }
-
-    .nav li {
-        text-align: center;
-        margin: 15px 0;
-    }
-
-    .nav li a {
-        color: white;
-    }
+.menu-toggle.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+.menu-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+}
+.menu-toggle.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
 }
 
-/* Section styles */
+
+/* General Section Styling */
 section {
-    padding: 2rem 0;
+    padding: calc(var(--spacing-unit) * 4) calc(var(--spacing-unit) * 2); /* More whitespace */
     text-align: center;
-}
-
-/* Hero section styles */
-#hero {
-    background: url('../images/hero-background.jpg') no-repeat center center/cover;
-    color: white;
-    padding: 5rem 0;
-}
-
-/* About, Portfolio, and Contact section styles */
-#about, #portfolio, #contact, #testimonials, #skills {
-    padding: 2rem;
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
+    opacity: 0; /* For scroll animations */
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
-/* Portfolio Section using CSS Grid */
-.projects {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1rem;
-    justify-content: center;
+section:first-of-type { /* Hero section often needs more top padding due to fixed header */
+    padding-top: calc(var(--spacing-unit) * 6);
 }
 
-/* Testimonials Section */
-#testimonials {
-    background-color: #f9f9f9;
-    padding: 2rem;
+section.animate {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-.testimonial {
-    margin-bottom: 1rem;
-    padding: 1rem;
-    border-left: 4px solid #333;
-    background-color: white;
+section h2 {
+    margin-bottom: calc(var(--spacing-unit) * 2.5); /* More space below section titles */
+    position: relative;
+    display: inline-block;
 }
 
-/* Skills Section */
-#skills {
-    padding: 2rem;
+/* Underline effect for section titles */
+section h2::after {
+    content: '';
+    display: block;
+    width: 60px; /* Width of the underline */
+    height: 4px; /* Thickness of the underline */
+    background-color: var(--secondary-color);
+    margin: 0.5rem auto 0; /* Centered below the title */
+    border-radius: 2px;
 }
 
-.skill {
-    margin-bottom: 1rem;
-}
 
-.progress-bar {
-    background-color: #e0e0e0;
-    border-radius: 5px;
-    overflow: hidden;
-}
-
-.progress {
-    background-color: #333;
-    height: 20px;
-    border-radius: 5px 0 0 5px;
-}
-
-/* Form styles */
-form {
+/* Hero Section */
+#hero {
+    background-color: var(--primary-color); /* Using primary color as background */
+    color: var(--text-light);
+    padding: calc(var(--spacing-unit) * 6) calc(var(--spacing-unit) * 2);
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-}
-
-form label {
-    margin-top: 1rem;
-}
-
-form input, form textarea {
-    width: 100%;
-    padding: 0.5rem;
-    margin-top: 0.5rem;
-}
-
-form button {
-    margin-top: 1rem;
-    padding: 0.5rem 1rem;
-    background-color: #333;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-/* Footer styles */
-footer {
-    background-color: #333;
-    color: white;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh; /* Make hero take more viewport height */
     text-align: center;
-    padding: 1rem 0;
+}
+
+#hero h1 {
+    color: var(--text-light);
+    font-size: 3rem; /* Larger font for hero title */
+    margin-bottom: var(--spacing-unit);
+}
+
+#hero p {
+    font-size: 1.25rem;
+    margin-bottom: calc(var(--spacing-unit) * 1.5);
+    max-width: 600px; /* Constrain width of hero text */
+    line-height: 1.7;
 }
 
 /* Call-to-Action Button */
 .btn {
     display: inline-block;
-    padding: 10px 20px;
-    margin-top: 20px;
-    font-size: 18px;
-    color: white;
-    background-color: #333;
-    border: none;
-    border-radius: 5px;
+    padding: calc(var(--spacing-unit) * 0.75) calc(var(--spacing-unit) * 2);
+    margin-top: var(--spacing-unit);
+    font-family: var(--heading-font);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-light);
+    background-color: var(--secondary-color);
+    border: 2px solid var(--secondary-color);
+    border-radius: var(--border-radius);
     text-decoration: none;
-    transition: background-color 0.3s ease;
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, transform var(--transition-speed) ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .btn:hover {
-    background-color: #555;
+    background-color: var(--accent-hover-color);
+    border-color: var(--accent-hover-color);
+    color: var(--text-light);
+    text-decoration: none;
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--secondary-color);
+    border: 2px solid var(--secondary-color);
+}
+
+.btn-outline:hover {
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+}
+
+/* About Me Section */
+#about {
+    text-align: left; /* Align text to left for readability */
+}
+#about .container { /* Add a container for better layout control */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: calc(var(--spacing-unit) * 2);
+}
+
+#about img, #about figure {
+    width: 200px; /* Maintain image size */
+    height: 200px;
+    border-radius: 50%; /* Circular image */
+    object-fit: cover; /* Ensure image covers the area well */
+    box-shadow: var(--box-shadow);
+    margin-bottom: var(--spacing-unit);
+}
+
+#about p {
+    max-width: 700px; /* Constrain text width */
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center; /* Center the paragraph text below the image */
+}
+
+/* Portfolio Section */
+.projects {
+    display: grid;
+    grid-template-columns: 1fr; /* Mobile: 1 column */
+    gap: calc(var(--spacing-unit) * 2);
+}
+
+.project {
+    background-color: var(--text-light);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    overflow: hidden; /* To contain image border radius */
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.project:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.project figure {
+    margin: 0;
+}
+
+.project img {
+    width: 100%;
+    height: 250px; /* Fixed height for project images */
+    object-fit: cover;
+    border-bottom: 1px solid var(--neutral-medium);
+}
+
+.project h3 {
+    font-size: 1.25rem;
+    color: var(--primary-color);
+    margin-top: var(--spacing-unit);
+}
+
+.project p {
+    font-size: 0.95rem;
+    padding: 0 var(--spacing-unit) var(--spacing-unit);
+    flex-grow: 1; /* Allows p to take available space */
+    color: var(--neutral-dark);
+}
+
+.project-content {
+    padding: var(--spacing-unit);
+    text-align: left;
+}
+
+
+/* Testimonials Section */
+#testimonials {
+    background-color: var(--neutral-medium); /* Slightly different background */
+}
+
+.testimonial {
+    background-color: var(--text-light);
+    padding: calc(var(--spacing-unit) * 1.5);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-bottom: var(--spacing-unit);
+    text-align: left;
+    border-left: 5px solid var(--secondary-color); /* Accent border */
+}
+
+.testimonial p {
+    font-style: italic;
+    color: var(--neutral-dark);
+    margin-bottom: 0.5rem; /* Reduce space for quote */
+}
+
+.testimonial p:last-child { /* Client name */
+    font-style: normal;
+    font-weight: 600;
+    text-align: right;
+    color: var(--primary-color);
+}
+
+
+/* Skills Section */
+.skill {
+    margin-bottom: calc(var(--spacing-unit) * 1.5);
+    text-align: left;
+}
+
+.skill h3 {
+    font-size: 1.1rem;
+    margin-bottom: calc(var(--spacing-unit) * 0.5);
+    color: var(--primary-color);
+}
+
+.progress-bar {
+    background-color: var(--neutral-medium);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    height: 25px; /* Slightly taller progress bar */
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.progress {
+    background-color: var(--secondary-color);
+    height: 100%;
+    border-radius: var(--border-radius) 0 0 var(--border-radius); /* Keep left radius */
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 0.5rem; /* Space for percentage text if added via JS */
+    color: var(--text-light);
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: width var(--transition-speed) ease-in-out; /* Animate width change */
+}
+
+
+/* Contact Form */
+#contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-unit);
+    max-width: 600px;
+    margin: 0 auto; /* Center form */
+    text-align: left;
+}
+
+#contact-form label {
+    font-weight: 600;
+    margin-bottom: calc(var(--spacing-unit) * 0.25);
+    color: var(--primary-color);
+}
+
+#contact-form input[type="text"],
+#contact-form input[type="email"],
+#contact-form textarea {
+    width: 100%;
+    padding: calc(var(--spacing-unit) * 0.75);
+    border: 1px solid var(--neutral-medium);
+    border-radius: var(--border-radius);
+    font-family: var(--body-font);
+    font-size: 1rem;
+    transition: border-color var(--transition-speed) ease;
+}
+
+#contact-form input[type="text"]:focus,
+#contact-form input[type="email"]:focus,
+#contact-form textarea:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 2px rgba(var(--secondary-color-rgb, 62, 146, 204), 0.25); /* Define --secondary-color-rgb if not already */
+}
+/* Helper for box-shadow (define --secondary-color-rgb at the top if you use this) */
+/* :root { --secondary-color-rgb: 62, 146, 204; } */
+
+
+#contact-form textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+#contact-form button[type="submit"] {
+    /* Replicating .btn styles */
+    display: inline-block;
+    padding: calc(var(--spacing-unit) * 0.75) calc(var(--spacing-unit) * 2);
+    margin-top: var(--spacing-unit);
+    font-family: var(--heading-font);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-light);
+    background-color: var(--secondary-color);
+    border: 2px solid var(--secondary-color);
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, transform var(--transition-speed) ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    cursor: pointer; /* Explicitly set cursor for button */
+    align-self: flex-start; /* Original alignment */
+}
+
+#contact-form button[type="submit"]:hover {
+    background-color: var(--accent-hover-color);
+    border-color: var(--accent-hover-color);
+    color: var(--text-light);
+    text-decoration: none;
+    transform: translateY(-2px);
+}
+
+/* Footer */
+footer {
+    background-color: var(--neutral-dark);
+    color: var(--neutral-light);
+    text-align: center;
+    padding: calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 2);
+    margin-top: calc(var(--spacing-unit) * 3); /* Space above footer */
+}
+
+footer p {
+    margin-bottom: 0;
+    font-size: 0.9rem;
 }
 
 /* Lightbox Styles */
@@ -192,28 +508,210 @@ footer {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.85); /* Darker overlay */
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 2000; /* Ensure it's on top */
+    padding: var(--spacing-unit);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-speed) ease, visibility var(--transition-speed) ease;
+}
+
+.lightbox-overlay.active { /* Class to show lightbox */
+    opacity: 1;
+    visibility: visible;
 }
 
 .lightbox-overlay img {
     max-width: 90%;
     max-height: 90%;
-    border: 2px solid white;
-    border-radius: 10px;
+    border: 3px solid var(--text-light);
+    border-radius: var(--border-radius);
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
 }
 
-/* Scroll Animations */
-section {
-    opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+/* Mobile-First Responsive Design */
+
+/* Styles for Mobile Navigation Menu (when active) */
+@media (max-width: 767px) {
+    nav ul#navigation-menu {
+        /* Initially hidden, shown by JS adding .active class */
+        /* Overrides desktop 'display: flex' for mobile dropdown behavior */
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 100%; /* Position below the header */
+        left: 0;
+        background-color: var(--text-light);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-in-out, padding-bottom 0.4s ease-in-out; /* Smooth transition */
+        padding-bottom: 0; /* For transition */
+    }
+
+    nav ul#navigation-menu.active {
+        display: flex; /* Make it visible */
+        max-height: 50vh; /* Adjust as needed, enough to show items */
+        overflow-y: auto; /* Scroll if too many items */
+        padding-bottom: var(--spacing-unit); /* Add some padding at the bottom when open */
+    }
+
+    nav ul#navigation-menu li {
+        margin: 0;
+        width: 100%;
+    }
+
+    nav ul#navigation-menu li a {
+        display: block;
+        padding: var(--spacing-unit) calc(var(--spacing-unit) * 2);
+        text-align: center;
+        border-bottom: 1px solid var(--neutral-medium);
+        color: var(--primary-color); /* Ensure text color is readable */
+        font-weight: 600;
+    }
+
+    nav ul#navigation-menu li:last-child a {
+        border-bottom: none;
+    }
+
+    nav ul#navigation-menu li a:hover,
+    nav ul#navigation-menu li a.active {
+        background-color: var(--secondary-color);
+        color: var(--text-light);
+    }
+
+    /* Show mobile menu toggle button */
+    .menu-toggle {
+        display: flex; /* Show the hamburger icon */
+        flex-direction: column; /* Ensure bars stack vertically */
+        justify-content: center;
+        align-items: center;
+    }
 }
 
-section.animate {
-    opacity: 1;
-    transform: translateY(0);
+
+/* Tablet Styles */
+@media (min-width: 768px) {
+    html {
+        font-size: calc(var(--base-font-size) + 1px); /* Slightly larger base on tablets */
+    }
+
+    h1 { font-size: 3rem; }
+    #hero h1 { font-size: 3.5rem; }
+    #hero p { font-size: 1.35rem; }
+
+    .menu-toggle {
+        display: none; /* Hide toggle on larger screens */
+    }
+
+    nav ul {
+        display: flex !important; /* Override inline style from JS if any */
+        flex-direction: row;
+        background-color: transparent;
+        width: auto;
+        position: static;
+    }
+
+    nav ul li {
+        margin: 0;
+        margin-left: calc(var(--spacing-unit) * 1.5); /* Keep original spacing */
+    }
+
+    #about .container {
+        flex-direction: row; /* Side-by-side layout */
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    #about img, #about figure {
+        margin-right: calc(var(--spacing-unit) * 3); /* Space between image and text */
+        margin-bottom: 0;
+    }
+    #about p {
+        text-align: left; /* Align paragraph to left */
+        margin-left: 0;
+    }
+
+    .projects {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for tablets */
+    }
+
+    #contact-form button[type="submit"] {
+        align-self: center; /* Center button on larger screens if form is centered */
+    }
+}
+
+/* Desktop Styles */
+@media (min-width: 1024px) {
+    html {
+        font-size: calc(var(--base-font-size) + 2px); /* Even larger base on desktops */
+    }
+    h1 { font-size: 3.5rem; }
+    #hero h1 { font-size: 4rem; }
+
+    .projects {
+        grid-template-columns: repeat(3, 1fr); /* 3 columns for desktops */
+    }
+
+    /* Increase padding for sections on larger screens for more whitespace */
+    section {
+        padding: calc(var(--spacing-unit) * 5) calc(var(--spacing-unit) * 3);
+    }
+     section:first-of-type {
+        padding-top: calc(var(--spacing-unit) * 7);
+    }
+
+    #hero {
+         padding: calc(var(--spacing-unit) * 8) calc(var(--spacing-unit) * 2);
+    }
+}
+
+/* Accessibility: Focus Visible (for keyboard navigation) */
+:focus-visible {
+  outline: 3px solid var(--secondary-color);
+  outline-offset: 2px;
+  border-radius: var(--border-radius);
+}
+
+nav ul li a:focus-visible {
+    background-color: var(--neutral-medium);
+    color: var(--primary-color);
+    outline: none; /* Custom focus for nav items */
+}
+
+.btn:focus-visible {
+    outline-color: var(--primary-color); /* Different outline for buttons if needed */
+}
+
+/* Adjustments for fixed header */
+body {
+    padding-top: 80px; /* Approximate height of the header, adjust as needed */
+}
+
+/* Styles for when JavaScript is disabled (optional but good practice) */
+.no-js nav ul { /* Ensure nav is visible if JS is off and mobile menu relies on it */
+    /* Add styles here if nav is hidden by default for JS enhancements */
+}
+
+/* Add this at the beginning of your CSS file for the :root variables */
+/* :root { --secondary-color-rgb: 62, 146, 204; }  <-- This is if you use the rgba shadow for form focus */
+/* Make sure to replace 62, 146, 204 with the actual RGB values of your --secondary-color if you use that specific shadow */
+
+/* Example for --secondary-color-rgb based on #3E92CC */
+/* R: 62, G: 146, B: 204 */
+:root {
+    --secondary-color-rgb: 62, 146, 204;
+    /* ... other variables ... */
+}
+
+#contact-form input[type="text"]:focus,
+#contact-form input[type="email"]:focus,
+#contact-form textarea:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 0.2rem rgba(var(--secondary-color-rgb), 0.25);
 }
