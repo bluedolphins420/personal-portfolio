@@ -22,6 +22,17 @@ document.addEventListener('DOMContentLoaded', () => {
         return header ? header.offsetHeight : 0;
     }
 
+    function updateHeaderHeight() {
+        const height = getHeaderHeight();
+        if (height > 0) {
+            document.documentElement.style.setProperty('--header-height', `${height}px`);
+        }
+    }
+
+    // Set initial header height and update on resize
+    updateHeaderHeight();
+    window.addEventListener('resize', updateHeaderHeight);
+
     // 2. Smooth Scrolling with Sticky Header Offset
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
