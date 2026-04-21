@@ -63,7 +63,7 @@ body {
     background-color: var(--color-apple-gray-light);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    padding-top: 70px; /* Placeholder for fixed header height */
+    padding-top: var(--header-height, 70px);
 }
 
 /* Typography */
@@ -418,7 +418,7 @@ footer p { margin-bottom: 0; font-size: 0.9rem; opacity: 0.8; }
 /* Responsive Adjustments */
 /* Mobile Navigation Specifics (from previous step, ensure integration) */
 @media (max-width: 767px) {
-    body { padding-top: 60px; /* Adjust if header height changes */ }
+    body { padding-top: var(--header-height, 60px); }
     header { padding: calc(var(--spacing-unit) * 0.6) 0; }
     .menu-toggle { display: flex; flex-direction: column; justify-content: center; align-items: center; }
     nav ul#navigation-menu {
@@ -484,13 +484,3 @@ nav ul li a:focus-visible, .btn:focus-visible {
 #contact-form input:focus-visible, #contact-form textarea:focus-visible {
     outline: none; /* Already handled by border and box-shadow */
 }
-
-/* Helper for body padding for fixed header, adjust if header height changes significantly */
-body {
-    padding-top: 70px; /* Based on new header padding, this may need adjustment */
-}
-/* Example: Measure header height in devtools and set this value.
-   If header padding: calc(var(--spacing-unit) * 0.8) 0; and spacing unit is 1rem (17px),
-   0.8 * 17 = 13.6px padding top/bottom. Add font size, etc.
-   Let's assume final header height is around 60-70px.
-*/
